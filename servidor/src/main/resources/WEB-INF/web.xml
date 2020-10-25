@@ -1,0 +1,24 @@
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+    <display-name>My web application From Eclipse!!!</display-name>
+
+    <servlet>
+        <servlet-name>MyServletName</servlet-name>
+        <servlet-class>
+            org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+        </servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>testA.Main</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup> <!-- Useful for early errors (on deploy, rather on demand) -->
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MyServletName</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>

@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>sd</groupId>
+	<artifactId>testA</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging> <!-- Activates the maven-war-plugin -->
+
+	<dependencies>
+
+		<!-- JPA Specification -->
+		<!-- https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api -->
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+
+		<!-- JPA Implementation: Hibernate -->
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>5.4.22.Final</version>
+		</dependency>
+
+		<!-- Includes DB driver: org.postgresql.Driver -->
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.16</version>
+		</dependency>
+
+		<!-- Jakarta RESTful Web Services Specification (JAX-RS) -->
+		<!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+
+		<!-- Using the JAX-RS included in Wildfly (RESTEasy) so no implementation 
+			of JAX-RS is required -->
+
+		<!-- Maven plugin to generate the Web Archive file -->
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+			<version>3.3.1</version>
+		</dependency>
+
+		<!-- Maven plugin to automatize deployment to Wildfly -->
+		<!-- https://mvnrepository.com/artifact/org.wildfly.plugins/wildfly-maven-plugin -->
+		<dependency>
+			<groupId>org.wildfly.plugins</groupId>
+			<artifactId>wildfly-maven-plugin</artifactId>
+			<version>2.0.2.Final</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.1</version>
+				<configuration>
+					<attachClasses>true</attachClasses>
+					<webXml>src/main/resources/WEB-INF/web.xml</webXml>
+					<webResources>
+						<resource>
+							<directory>src/main/java</directory>
+							<filtering>true</filtering>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>2.1.0.Beta1</version>
+			</plugin>
+
+		</plugins>
+	</build>
+</project>
